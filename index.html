@@ -14,6 +14,14 @@
   </script>
   <title>Vibecoding</title>
   <style>
+    main.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: 100px; /* puoi aumentare o diminuire */
+}
+
     * { 
       box-sizing: border-box; 
       margin: 0; 
@@ -21,23 +29,22 @@
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      
-      /* Immagine di sfondo */
-      background-image: url('mitdir2.jpg'); /* Sostituisci con il percorso dell'immagine */
-      background-size: cover; /* L'immagine copre tutto lo schermo */
-      background-position: center; /* Centra l'immagine */
-      background-repeat: no-repeat; /* Impedisce che l'immagine si ripeta */
-      
-      color: #fff;
-      position: relative;
-      overflow: hidden; /* Impedisce lo scrolling quando l'immagine è troppo grande */
-    }
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+
+  background-image: url('mitdir2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
 
     h1 {
       margin-bottom: 20px;
@@ -153,25 +160,26 @@
   </style>
 </head>
 <body>
-  <h1>Vibecoding</h1>
-  <div class="buttons">
-    <button id="btn1">In un mondo chee</button>
-    <button id="btn2">Mit dirino</button>
-    <button id="btn3">Dormiamo</button>
-    <button id="btn4">Bresh</button>
-  </div>
+  <main class="content">
+    <h1>Il tuo Fagiolino ti ama tanto tanto</h1>
+    <div class="buttons">
+      <button id="btn1">In un mondo chee</button>
+      <button id="btn2">Mit dirino</button>
+      <button id="btn3">Dormiamo</button>
+      <button id="btn4">Bresh</button>
+    </div>
 
-  <div class="player-info">
-    <div id="timer">00:00 / 00:00</div>
-    <progress id="progress" value="0" max="1"></progress>
-  </div>
+    <div class="player-info">
+      <div id="timer">00:00 / 00:00</div>
+      <progress id="progress" value="0" max="1"></progress>
+    </div>
 
-  <!-- Pulsante Pausa -->
-  <button id="pauseBtn">Pausa</button>
+    <button id="pauseBtn">Pausa</button>
+  </main>
 
-  <footer>© 2025 Vibecoding</footer>
+  <footer>© 2025 Amorino</footer>
 
-  <!-- Carica il JS dopo gli elementi a cui fa riferimento -->
   <script src="main.js"></script>
 </body>
+
 </html>
