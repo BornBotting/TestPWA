@@ -61,24 +61,38 @@ function formatTime(sec) {
 }
 // RIGA 62 circa: controllo pausa dedicato
 const pauseBtn = document.getElementById('pauseBtn');
+
 pauseBtn.addEventListener('click', () => {
-  if (!currentButtonId) return;  // Nessun audio attivo
+  console.log('Pause button clicked');
+
+  if (!currentButtonId) {
+    console.log('Nessun audio attivo (currentButtonId è nullo o undefined)');
+    return;
+  }
 
   // Trova il file in riproduzione o in pausa
   const playingFile = Object.keys(audios)
     .find(key => audios[key].currentTime > 0);
 
-  if (!playingFile) return;
+  if (!playingFile) {
+    console.log('Nessun file audio trovato in riproduzione o in pausa');
+    return;
+  }
+
+  console.log('Audio attivo trovato:', playingFile);
 
   const audio = audios[playingFile];
   const btn = document.getElementById(currentButtonId);
 
   if (audio.paused) {
+    console.log(`Audio "${playingFile}" è in pausa. Avvio la riproduzione.`);
     audio.play();
     btn.classList.add('playing');
   } else {
+    console.log(`Audio "${playingFile}" è in riproduzione. Lo metto in pausa.`);
     audio.pause();
     btn.classList.remove('playing');
   }
 });
+
 
