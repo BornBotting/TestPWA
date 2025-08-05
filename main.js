@@ -1,8 +1,9 @@
-const audioFiles = ['audio1.mp3','audio2.mp3','audio3.mp3','audio4.mp3'];
+const audioFiles = ['audio1.mp3', 'audio2.mp3', 'audio3.mp3', 'audio4.mp3'];
 const audios = {};
 let currentButtonId = null;
 const timerEl = document.getElementById('timer');
 const progressEl = document.getElementById('progress');
+
 const buttonAudioMap = {
   btn1: 'audio1.mp3',
   btn2: 'audio2.mp3',
@@ -10,15 +11,16 @@ const buttonAudioMap = {
   btn4: 'audio4.mp3'
 };
 
+// Aggiungi gli event listener per i bottoni
 Object.entries(buttonAudioMap).forEach(([buttonId, audioFile]) => {
   const btn = document.getElementById(buttonId);
   btn.addEventListener('click', () => playAudio(audioFile, buttonId));
 });
 
-
+// Carica e gestisci gli audio
 audioFiles.forEach(file => {
   const audio = new Audio(file);
-  
+
   // Aggiorna timer e barra ad ogni frame
   audio.addEventListener('timeupdate', () => {
     const cur = formatTime(audio.currentTime);
@@ -26,7 +28,7 @@ audioFiles.forEach(file => {
     timerEl.textContent = `${cur} / ${dur}`;
     progressEl.value = audio.currentTime / audio.duration;
   });
-  
+
   // Reset visivo a fine riproduzione
   audio.addEventListener('ended', () => {
     if (currentButtonId) {
@@ -34,13 +36,12 @@ audioFiles.forEach(file => {
       currentButtonId = null;
     }
   });
-  
+
   audios[file] = audio;
 });
 
 function playAudio(file, buttonId) {
-  window.playAudio = playAudio;
-  // Stop del precedente
+  // Stop del precedente audio, se necessario
   if (currentButtonId && currentButtonId !== buttonId) {
     const prevFile = Object.keys(audios).find(key => !audios[key].paused);
     if (prevFile) {
@@ -49,7 +50,7 @@ function playAudio(file, buttonId) {
       document.getElementById(currentButtonId).classList.remove('playing');
     }
 
-    // 🔄 Reset bottone "Riprendi" → torna a "Pausa"
+    // Reset bottone "Riprendi" → torna a "Pausa"
     pauseBtn.textContent = 'Pausa';
   }
 
@@ -66,25 +67,8 @@ function playAudio(file, buttonId) {
     btn.classList.remove('playing');
     currentButtonId = null;
 
-    // 🔄 Se stai stoppando lo stesso audio, aggiorna il bottone
+    // Se stai stoppando lo stesso audio, aggiorna il bottone
     pauseBtn.textContent = 'Riprendi';
-  }
-}
-
-
-
-  const audio = audios[file];
-  const btn = document.getElementById(buttonId);
-
-  if (audio.paused) {
-    audio.currentTime = 0;
-    audio.play();
-    btn.classList.add('playing');
-    currentButtonId = buttonId;
-  } else {
-    audio.pause();
-    btn.classList.remove('playing');
-    currentButtonId = null;
   }
 }
 
@@ -92,9 +76,10 @@ function playAudio(file, buttonId) {
 function formatTime(sec) {
   const minutes = Math.floor(sec / 60) || 0;
   const seconds = Math.floor(sec % 60) || 0;
-  return `${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
+  return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 }
-// RIGA 62 circa: controllo pausa dedicato
+
+// Gestione del bottone di pausa
 const pauseBtn = document.getElementById('pauseBtn');
 
 pauseBtn.addEventListener('click', () => {
@@ -131,6 +116,3 @@ pauseBtn.addEventListener('click', () => {
     pauseBtn.textContent = 'Riprendi'; // Cambia a "Riprendi" quando si mette in pausa
   }
 });
-
-
-
