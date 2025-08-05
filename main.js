@@ -59,6 +59,7 @@ function playAudio(file, buttonId) {
     audio.play();
     btn.classList.add('playing');
     currentButtonId = buttonId; // Aggiorna l'ID del bottone corrente
+    pauseBtn.textContent = 'Pausa'; // Se l'audio inizia, il bottone pausa è "Pausa"
   } else {
     audio.pause();
     btn.classList.remove('playing');
