@@ -94,29 +94,25 @@ pauseBtn.addEventListener('click', () => {
     return;
   }
 
-  // Trova il file in riproduzione o in pausa
-  const playingFile = Object.keys(audios)
-    .find(key => audios[key].currentTime > 1);
+  // Ottieni il file audio associato al currentButtonId
+  const file = buttonAudioMap[currentButtonId];
+  const audio = audios[file];
+  const btn = document.getElementById(currentButtonId);
 
-  if (!playingFile) {
-    console.log('Nessun file audio trovato in riproduzione o in pausa');
+  if (!audio) {
+    console.log('Audio non trovato per currentButtonId:', currentButtonId);
     return;
   }
 
-  console.log('Audio attivo trovato:', playingFile);
-
-  const audio = audios[playingFile];
-  const btn = document.getElementById(currentButtonId);
-
   if (audio.paused) {
-    console.log(`Audio "${playingFile}" è in pausa. Avvio la riproduzione.`);
+    console.log(`Audio "${file}" è in pausa. Avvio la riproduzione.`);
     audio.play();
     btn.classList.add('playing');
-    pauseBtn.textContent = 'Pausa'; // Torna a "Pausa" quando riprende
+    pauseBtn.textContent = 'Pausa'; // Cambia testo
   } else {
-    console.log(`Audio "${playingFile}" è in riproduzione. Lo metto in pausa.`);
+    console.log(`Audio "${file}" è in riproduzione. Lo metto in pausa.`);
     audio.pause();
     btn.classList.remove('playing');
-    pauseBtn.textContent = 'Riprendi'; // Cambia a "Riprendi" quando si mette in pausa
+    pauseBtn.textContent = 'Riprendi'; // Cambia testo
   }
 });
