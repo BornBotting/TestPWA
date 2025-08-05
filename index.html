@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="manifest" href="manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js');
@@ -11,31 +14,68 @@
   </script>
   <title>Vibecoding</title>
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
+      font-family: 'Poppins', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      margin: 0;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(2, 140px);
+      gap: 20px;
     }
     button {
-      margin: 10px;
-      padding: 20px;
-      font-size: 18px;
-      transition: background-color 0.3s, color 0.3s;
+      width: 140px;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: 500;
+      border: none;
+      border-radius: 12px;
+      background-color: rgba(255,255,255,0.2);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.1s;
+    }
+    button:hover {
+      background-color: rgba(255,255,255,0.3);
+    }
+    button:active {
+      transform: scale(0.97);
     }
     .playing {
-      background-color: #4CAF50;
-      color: #fff;
+      background-color: #ffcc00 !important;
+      color: #333 !important;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    }
+    footer {
+      position: absolute;
+      bottom: 15px;
+      font-size: 14px;
+      opacity: 0.7;
     }
   </style>
 </head>
 <body>
-  <button id="btn1" onclick="playAudio('audio1.mp3', 'btn1')">Suono 1</button>
-  <button id="btn2" onclick="playAudio('audio2.mp3', 'btn2')">Suono 2</button>
-  <button id="btn3" onclick="playAudio('audio3.mp3', 'btn3')">Suono 3</button>
-  <button id="btn4" onclick="playAudio('audio4.mp3', 'btn4')">Suono 4</button>
+  <h1>Vibecoding</h1>
+  <div class="buttons">
+    <button id="btn1" onclick="playAudio('audio1.mp3','btn1')">Suono 1</button>
+    <button id="btn2" onclick="playAudio('audio2.mp3','btn2')">Suono 2</button>
+    <button id="btn3" onclick="playAudio('audio3.mp3','btn3')">Suono 3</button>
+    <button id="btn4" onclick="playAudio('audio4.mp3','btn4')">Suono 4</button>
+  </div>
+  <footer>Premi un bottone per ascoltare</footer>
   <script src="main.js"></script>
 </body>
 </html>
