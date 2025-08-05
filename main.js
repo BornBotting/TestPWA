@@ -1,6 +1,6 @@
 const audioFiles = ['audio1.mp3', 'audio2.mp3', 'audio3.mp3', 'audio4.mp3'];
 const audios = {};
-let currentButtonId = null;
+let currentButtonId = null; // Memorizza l'ID del bottone corrente
 const timerEl = document.getElementById('timer');
 const progressEl = document.getElementById('progress');
 const buttonAudioMap = {
@@ -38,7 +38,7 @@ audioFiles.forEach(file => {
 });
 
 function playAudio(file, buttonId) {
-  // Stop del precedente audio se necessario
+  // Se è stato cliccato un nuovo audio, metti in pausa il precedente
   if (currentButtonId && currentButtonId !== buttonId) {
     const prevFile = Object.keys(audios).find(key => !audios[key].paused);
     if (prevFile) {
@@ -47,7 +47,7 @@ function playAudio(file, buttonId) {
       document.getElementById(currentButtonId).classList.remove('playing');
     }
 
-    // Reset bottone "Riprendi" → torna a "Pausa"
+    // 🔄 Reset bottone "Riprendi" → torna a "Pausa" quando si cambia audio
     pauseBtn.textContent = 'Pausa';
   }
 
@@ -58,13 +58,13 @@ function playAudio(file, buttonId) {
     audio.currentTime = 0;
     audio.play();
     btn.classList.add('playing');
-    currentButtonId = buttonId; // Aggiorna il bottone corrente
+    currentButtonId = buttonId; // Aggiorna l'ID del bottone corrente
   } else {
     audio.pause();
     btn.classList.remove('playing');
     currentButtonId = null;
 
-    // Se stai stoppando lo stesso audio, aggiorna il bottone
+    // 🔄 Se stai stoppando lo stesso audio, aggiorna il bottone di pausa
     pauseBtn.textContent = 'Riprendi';
   }
 }
