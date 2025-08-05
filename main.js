@@ -35,7 +35,29 @@ function playAudio(file, buttonId) {
       audios[prevFile].currentTime = 0;
       document.getElementById(currentButtonId).classList.remove('playing');
     }
+
+    // 🔄 Reset bottone "Riprendi" → torna a "Pausa"
+    pauseBtn.textContent = 'Pausa';
   }
+
+  const audio = audios[file];
+  const btn = document.getElementById(buttonId);
+
+  if (audio.paused) {
+    audio.currentTime = 0;
+    audio.play();
+    btn.classList.add('playing');
+    currentButtonId = buttonId;
+  } else {
+    audio.pause();
+    btn.classList.remove('playing');
+    currentButtonId = null;
+
+    // 🔄 Se stai stoppando lo stesso audio, aggiorna il bottone
+    pauseBtn.textContent = 'Riprendi';
+  }
+}
+
 
 
   const audio = audios[file];
