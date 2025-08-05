@@ -3,7 +3,6 @@ const audios = {};
 let currentButtonId = null;
 const timerEl = document.getElementById('timer');
 const progressEl = document.getElementById('progress');
-
 const buttonAudioMap = {
   btn1: 'audio1.mp3',
   btn2: 'audio2.mp3',
@@ -11,16 +10,14 @@ const buttonAudioMap = {
   btn4: 'audio4.mp3'
 };
 
-// Aggiungi gli event listener per i bottoni
 Object.entries(buttonAudioMap).forEach(([buttonId, audioFile]) => {
   const btn = document.getElementById(buttonId);
   btn.addEventListener('click', () => playAudio(audioFile, buttonId));
 });
 
-// Carica e gestisci gli audio
 audioFiles.forEach(file => {
   const audio = new Audio(file);
-
+  
   // Aggiorna timer e barra ad ogni frame
   audio.addEventListener('timeupdate', () => {
     const cur = formatTime(audio.currentTime);
@@ -28,7 +25,7 @@ audioFiles.forEach(file => {
     timerEl.textContent = `${cur} / ${dur}`;
     progressEl.value = audio.currentTime / audio.duration;
   });
-
+  
   // Reset visivo a fine riproduzione
   audio.addEventListener('ended', () => {
     if (currentButtonId) {
@@ -36,12 +33,12 @@ audioFiles.forEach(file => {
       currentButtonId = null;
     }
   });
-
+  
   audios[file] = audio;
 });
 
 function playAudio(file, buttonId) {
-  // Stop del precedente audio, se necessario
+  // Stop del precedente audio se necessario
   if (currentButtonId && currentButtonId !== buttonId) {
     const prevFile = Object.keys(audios).find(key => !audios[key].paused);
     if (prevFile) {
@@ -61,7 +58,7 @@ function playAudio(file, buttonId) {
     audio.currentTime = 0;
     audio.play();
     btn.classList.add('playing');
-    currentButtonId = buttonId;
+    currentButtonId = buttonId; // Aggiorna il bottone corrente
   } else {
     audio.pause();
     btn.classList.remove('playing');
