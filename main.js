@@ -39,9 +39,12 @@ audioFiles.forEach(file => {
 
 function playAudio(file, buttonId) {
   // Se è stato cliccato un nuovo audio, metti in pausa il precedente
+  console.log('1');
   if (currentButtonId && currentButtonId !== buttonId) {
+    console.log('1.1');
     const prevFile = Object.keys(audios).find(key => !audios[key].paused);
     if (prevFile) {
+      console.log('1.2');
       audios[prevFile].pause();
       audios[prevFile].currentTime = 0;
       document.getElementById(currentButtonId).classList.remove('playing');
@@ -55,12 +58,14 @@ function playAudio(file, buttonId) {
   const btn = document.getElementById(buttonId);
 
   if (audio.paused) {
+    console.log('2');
     audio.currentTime = 0;
     audio.play();
     btn.classList.add('playing');
     currentButtonId = buttonId; // Aggiorna l'ID del bottone corrente
     pauseBtn.textContent = 'Pausa'; // Se l'audio inizia, il bottone pausa è "Pausa"
   } else {
+    console.log('2.2');
     audio.pause();
     btn.classList.remove('playing');
     currentButtonId = null;
