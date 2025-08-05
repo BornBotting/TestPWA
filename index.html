@@ -14,7 +14,12 @@
   </script>
   <title>Vibecoding</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
       display: flex;
@@ -22,21 +27,31 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
-      background: linear-gradient(135deg, #667eea, #764ba2);
+      
+      /* Immagine di sfondo */
+      background-image: url('background.jpg'); /* Sostituisci con il percorso dell'immagine */
+      background-size: cover; /* L'immagine copre tutto lo schermo */
+      background-position: center; /* Centra l'immagine */
+      background-repeat: no-repeat; /* Impedisce che l'immagine si ripeta */
+      
       color: #fff;
       position: relative;
+      overflow: hidden; /* Impedisce lo scrolling quando l'immagine è troppo grande */
     }
+
     h1 {
       margin-bottom: 20px;
       font-weight: 500;
       letter-spacing: 1px;
     }
+
     .buttons {
       display: grid;
       grid-template-columns: repeat(2, 140px);
       gap: 20px;
       margin-bottom: 30px;
     }
+
     button {
       width: 140px;
       padding: 15px;
@@ -50,27 +65,33 @@
       cursor: pointer;
       transition: background-color 0.3s, transform 0.1s;
     }
+
     button:hover {
       background-color: rgba(255,255,255,0.3);
     }
+
     button:active {
       transform: scale(0.97);
     }
+
     .playing {
       background-color: #ffcc00 !important;
       color: #333 !important;
       box-shadow: 0 6px 16px rgba(0,0,0,0.3);
     }
+
     .player-info {
       width: 80%;
       max-width: 300px;
       text-align: center;
     }
+
     #timer {
       margin-bottom: 8px;
       font-size: 14px;
       opacity: 0.9;
     }
+
     #progress {
       width: 100%;
       height: 6px;
@@ -80,34 +101,72 @@
       background: rgba(255,255,255,0.3);
       overflow: hidden;
     }
+
     #progress::-webkit-progress-bar {
       background: rgba(255,255,255,0.3);
     }
+
     #progress::-webkit-progress-value {
       background: #ffcc00;
     }
+
     footer {
       position: absolute;
       bottom: 15px;
       font-size: 14px;
       opacity: 0.7;
     }
+
+    /* Media query per dispositivi mobili */
+    @media (max-width: 768px) {
+      body {
+        background-position: center; /* Rende l'immagine centrata anche su schermi piccoli */
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .buttons {
+        grid-template-columns: repeat(1, 140px); /* Solo una colonna su schermi piccoli */
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 20px;
+      }
+
+      .buttons {
+        gap: 15px;
+      }
+
+      button {
+        padding: 12px;
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
   <h1>Vibecoding</h1>
-   <div class="buttons">
-  <button id="btn1">Suono 1</button>
-  <button id="btn2">Suono 2</button>
-  <button id="btn3">Suono 3</button>
-  <button id="btn4">Suono 4</button>
- </div>
+  <div class="buttons">
+    <button id="btn1">In un mondo chee</button>
+    <button id="btn2">Mit dirino</button>
+    <button id="btn3">Dormiamo</button>
+    <button id="btn4">Bresh</button>
+  </div>
 
   <div class="player-info">
     <div id="timer">00:00 / 00:00</div>
     <progress id="progress" value="0" max="1"></progress>
   </div>
-  <!-- RIGA 110 circa: pulsante Pausa -->
+
+  <!-- Pulsante Pausa -->
   <button id="pauseBtn">Pausa</button>
 
   <footer>© 2025 Vibecoding</footer>
