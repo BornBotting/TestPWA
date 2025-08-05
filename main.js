@@ -36,6 +36,21 @@ function playAudio(file, buttonId) {
       document.getElementById(currentButtonId).classList.remove('playing');
     }
   }
+  
+// RIGA 40 circa: controllo pausa dedicato
+const pauseBtn = document.getElementById('pauseBtn');
+pauseBtn.addEventListener('click', () => {
+  if (currentButtonId) {
+    const playingFile = Object.keys(audios)
+      .find(key => !audios[key].paused);
+    if (playingFile) {
+      audios[playingFile].pause();
+      document.getElementById(currentButtonId)
+              .classList.remove('playing');
+      currentButtonId = null;
+    }
+  }
+});
 
   const audio = audios[file];
   const btn = document.getElementById(buttonId);
