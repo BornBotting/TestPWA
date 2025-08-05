@@ -88,11 +88,14 @@ pauseBtn.addEventListener('click', () => {
     console.log(`Audio "${playingFile}" è in pausa. Avvio la riproduzione.`);
     audio.play();
     btn.classList.add('playing');
+    pauseBtn.textContent = 'Pausa'; // Torna a "Pausa" quando riprende
   } else {
     console.log(`Audio "${playingFile}" è in riproduzione. Lo metto in pausa.`);
     audio.pause();
     btn.classList.remove('playing');
+    pauseBtn.textContent = 'Riprendi'; // Cambia a "Riprendi" quando si mette in pausa
   }
 });
+
 
 
