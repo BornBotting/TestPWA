@@ -27,6 +27,7 @@ audioFiles.forEach(file => {
 });
 
 function playAudio(file, buttonId) {
+  window.playAudio = playAudio;
   // Stop del precedente
   if (currentButtonId && currentButtonId !== buttonId) {
     const prevFile = Object.keys(audios).find(key => !audios[key].paused);
