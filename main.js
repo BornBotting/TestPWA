@@ -62,14 +62,23 @@ function formatTime(sec) {
 // RIGA 62 circa: controllo pausa dedicato
 const pauseBtn = document.getElementById('pauseBtn');
 pauseBtn.addEventListener('click', () => {
-  if (currentButtonId) {
-    const playingFile = Object.keys(audios)
-      .find(key => !audios[key].paused);
-    if (playingFile) {
-      audios[playingFile].pause();
-      document.getElementById(currentButtonId)
-              .classList.remove('playing');
-      currentButtonId = null;
-    }
+  if (!currentButtonId) return;  // Nessun audio attivo
+
+  // Trova il file in riproduzione o in pausa
+  const playingFile = Object.keys(audios)
+    .find(key => audios[key].currentTime > 0);
+
+  if (!playingFile) return;
+
+  const audio = audios[playingFile];
+  const btn = document.getElementById(currentButtonId);
+
+  if (audio.paused) {
+    audio.play();
+    btn.classList.add('playing');
+  } else {
+    audio.pause();
+    btn.classList.remove('playing');
   }
 });
+
