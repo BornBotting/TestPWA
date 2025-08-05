@@ -40,6 +40,7 @@ audioFiles.forEach(file => {
 function playAudio(file, buttonId) {
   // Se è stato cliccato un nuovo audio, metti in pausa il precedente
   console.log('1');
+  console.log('Nessun file audio trovato in riproduzione o in pausa');
   if (currentButtonId && currentButtonId !== buttonId) {
     console.log('1.1');
     const prevFile = Object.keys(audios).find(key => !audios[key].paused);
@@ -95,7 +96,7 @@ pauseBtn.addEventListener('click', () => {
 
   // Trova il file in riproduzione o in pausa
   const playingFile = Object.keys(audios)
-    .find(key => audios[key].currentTime > 0);
+    .find(key => audios[key].currentTime > 1);
 
   if (!playingFile) {
     console.log('Nessun file audio trovato in riproduzione o in pausa');
