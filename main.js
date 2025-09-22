@@ -5,9 +5,7 @@ const timerEl = document.getElementById('timer');
 const progressEl = document.getElementById('progress');
 const buttonAudioMap = {
   btn1: 'audio1.mp3',
-  btn2: 'audio2.mp3',
-  btn3: 'audio3.mp3',
-  btn4: 'audio4.mp3'
+  btn2: 'audio2.mp3'
 };
 
 Object.entries(buttonAudioMap).forEach(([buttonId, audioFile]) => {
